@@ -102,6 +102,7 @@ public partial class BagOfTricksFeatureTab : FeatureTab {
 
         AddFeature(new AllowZoomOnAllMapsAndCutscenesFeature(), m_CameraLocalizedText);
         AddFeature(new AllowRotateOnAllMapsAndCutscenesFeature(), m_CameraLocalizedText);
+        AddFeature(new PhysicalZoomFeature(), m_CameraLocalizedText);
         AddFeature(new FOVMultiplierFeature(), m_CameraLocalizedText);
         AddFeature(new FreeCamFeature(), m_CameraLocalizedText);
         AddFeature(new CameraElevationOffsetFeature(), m_CameraLocalizedText);
