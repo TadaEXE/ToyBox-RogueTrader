@@ -3,27 +3,36 @@ using Kingmaker.EntitySystem.Stats.Base;
 
 namespace ToyBox.Infrastructure;
 
-public class GeneralSettings : AbstractJsonSettings {
-    private static readonly Lazy<GeneralSettings> m_Instance = new(() => {
+public class GeneralSettings : AbstractJsonSettings
+{
+    private static readonly Lazy<GeneralSettings> m_Instance = new(() =>
+    {
         var instance = new GeneralSettings();
         instance.Load();
         return instance;
     });
-    public static GeneralSettings Settings {
-        get {
+    public static GeneralSettings Settings
+    {
+        get
+        {
             return m_Instance.Value;
         }
     }
-    public static bool IsInRestrictedMode {
-        get {
+    public static bool IsInRestrictedMode
+    {
+        get
+        {
             return !Settings.HasSeenFirstStartPageAlpha;
         }
     }
-    public static void DisableRestrictedMode() {
+    public static void DisableRestrictedMode()
+    {
         Settings.HasSeenFirstStartPageAlpha = true;
     }
-    protected override string Name {
-        get {
+    protected override string Name
+    {
+        get
+        {
             return "Settings.json";
         }
     }
@@ -132,6 +141,11 @@ public class GeneralSettings : AbstractJsonSettings {
     public float CameraElevationOffset = 0;
     public bool EnableDragCameraElevation = false;
     public bool EnableMouse3DraggingToAimCamera = false;
+    public bool EnablePhysicalZoom = false;
+    public float PhysicalZoomMin = 5;
+    public float PhysicalZoomMax = 15;
+    public float VerticalRotationUpperBound = 45;
+    public float VerticalRotationLowerBound = -45;
 
     // - Cheats
     public bool PreventTrapsFromTriggering = false;
