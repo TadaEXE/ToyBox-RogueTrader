@@ -17,6 +17,7 @@ public partial class ResetCameraAimToDefaultFeature : FeatureWithBindableAction 
     public override void ExecuteAction(ActionParameter parameter) {
         LogExecution(parameter);
         var rig = CameraRig.Instance;
-        _ = rig?.m_TargetRotate.x = 0;
+        rig.ResetCurrentModeSettings();
+        rig.ResetCamera();
     }
 }
