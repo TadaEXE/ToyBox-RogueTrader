@@ -120,7 +120,7 @@
     "Translated": null
   },
   "ToyBox_Features_BagOfTricks_Camera_FOVMultiplierFeature_Description": {
-    "Original": "Changes the min/max FoV (you can scroll further in and out)",
+    "Original": "Changes the min/max FOV (you can scroll further in and out)",
     "Translated": null
   },
   "ToyBox_Features_BagOfTricks_Camera_FreeCamFeature_Name": {
@@ -129,6 +129,14 @@
   },
   "ToyBox_Features_BagOfTricks_Camera_FreeCamFeature_Description": {
     "Original": "Makes the game no longer force the camera to ground.",
+    "Translated": null
+  },
+  "ToyBox_Features_BagOfTricks_Camera_PhysicalZoomFeature_Name": {
+    "Original": "Use physical zoom",
+    "Translated": null
+  },
+  "ToyBox_Features_BagOfTricks_Camera_PhysicalZoomFeature_Description": {
+    "Original": "Move the camera physically along the Z-Axis towards/away from the player (when following). Overrides the FOV based zoom on scroll wheel.",
     "Translated": null
   },
   "ToyBox_Features_BagOfTricks_Camera_ResetCameraAimToDefaultFeature_Name": {
