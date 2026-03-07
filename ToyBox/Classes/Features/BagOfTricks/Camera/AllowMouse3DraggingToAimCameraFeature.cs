@@ -32,18 +32,18 @@ public partial class AllowMouse3DraggingToAimCameraFeature : FeatureWithPatch, I
             return "ToyBox.Features.BagOfTricks.Camera.AllowMouse3DraggingToAimCameraFeature";
         }
     }
-    public ref float VerticalRotationUpperBound
+    public ref float VerticalRotationExtraDownwards
     {
         get
         {
-            return ref Settings.VerticalRotationUpperBound;
+            return ref Settings.VerticalRotationExtraDownwards;
         }
     }
-    public ref float VerticalRotationLowerBound
+    public ref float VerticalRotationExtraUpwards
     {
         get
         {
-            return ref Settings.VerticalRotationLowerBound;
+            return ref Settings.VerticalRotationExtraUpwards;
         }
     }
 
@@ -65,14 +65,14 @@ public partial class AllowMouse3DraggingToAimCameraFeature : FeatureWithPatch, I
             {
                 using (HorizontalScope())
                 {
+                    Space(20);
+                    UI.Label("┗━");
                     Space(10);
-                    UI.Label("->");
+                    UI.Label("Extra Up Rotation:");
+                    UI.Slider(ref VerticalRotationExtraUpwards, 0f, 45f, 33.3f, 1, null, null, AutoWidth(), GUILayout.MinWidth(50), GUILayout.MaxWidth(150));
                     Space(10);
-                    UI.Label("LowerBound:");
-                    UI.Slider(ref VerticalRotationLowerBound, -90f, 0f, -45f, 2, null, null, AutoWidth(), GUILayout.MinWidth(50), GUILayout.MaxWidth(150));
-                    Space(10);
-                    UI.Label("UpperBound:");
-                    UI.Slider(ref VerticalRotationUpperBound, 0f, 90f, 45f, 2, null, null, AutoWidth(), GUILayout.MinWidth(50), GUILayout.MaxWidth(150));
+                    UI.Label("Extra Down Rotation:");
+                    UI.Slider(ref VerticalRotationExtraDownwards, 0f, 45f, 33.3f, 1, null, null, AutoWidth(), GUILayout.MinWidth(50), GUILayout.MaxWidth(150));
                 }
             }
         }
@@ -112,8 +112,8 @@ public partial class AllowMouse3DraggingToAimCameraFeature : FeatureWithPatch, I
         m_OriginalMinSpaceCameraAngle = __instance.MinSpaceCameraAngle;
         m_OriginalMaxSpaceCameraAngle = __instance.MaxSpaceCameraAngle;
         m_OriginalEnableOrbitCamera = __instance.m_EnableOrbitCamera;
-        __instance.MinSpaceCameraAngle = GetInstance<AllowMouse3DraggingToAimCameraFeature>().VerticalRotationLowerBound;
-        __instance.MaxSpaceCameraAngle = GetInstance<AllowMouse3DraggingToAimCameraFeature>().VerticalRotationUpperBound;
+        __instance.MinSpaceCameraAngle = -GetInstance<AllowMouse3DraggingToAimCameraFeature>().VerticalRotationExtraUpwards;
+        __instance.MaxSpaceCameraAngle = GetInstance<AllowMouse3DraggingToAimCameraFeature>().VerticalRotationExtraDownwards;
         __instance.m_EnableOrbitCamera = true;
     }
     [HarmonyPatch(typeof(CameraRig), nameof(CameraRig.TickRotate)), HarmonyPostfix]
@@ -122,6 +122,6 @@ public partial class AllowMouse3DraggingToAimCameraFeature : FeatureWithPatch, I
         __instance.MinSpaceCameraAngle = m_OriginalMinSpaceCameraAngle;
         __instance.MaxSpaceCameraAngle = m_OriginalMaxSpaceCameraAngle;
         __instance.m_EnableOrbitCamera = m_OriginalEnableOrbitCamera;
-        // __instance.EnsureAboveGround()
+        // __instance.ScrollToImmediately(__instance.EnsureAboveGround(__instance.posi));
     }
 }

@@ -136,16 +136,16 @@ public class GeneralSettings : AbstractJsonSettings
     // - Camera
     public bool EnableAllowZoomOnAllMapsAndCutscenes = false;
     public bool EnableAllowRotateOnAllMapsAndCutscenes = false;
-    public float FOVMultiplierSetting = 1;
+    public float FOVMultiplierSetting = 1f;
     public bool EnableFreeCam = false;
-    public float CameraElevationOffset = 0;
+    public float CameraElevationOffset = 0f;
     public bool EnableDragCameraElevation = false;
     public bool EnableMouse3DraggingToAimCamera = false;
     public bool EnablePhysicalZoom = false;
-    public float PhysicalZoomMin = 5;
-    public float PhysicalZoomMax = 15;
-    public float VerticalRotationUpperBound = 45;
-    public float VerticalRotationLowerBound = -45;
+    public float PhysicalZoomFarLimit = 5f;
+    public float PhysicalZoomCloseLimit = 15f;
+    public float VerticalRotationExtraDownwards = 33.3f;
+    public float VerticalRotationExtraUpwards = 33.3f;
 
     // - Cheats
     public bool PreventTrapsFromTriggering = false;

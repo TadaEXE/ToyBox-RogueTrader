@@ -104,7 +104,7 @@
     "Translated": null
   },
   "ToyBox_Features_BagOfTricks_Camera_CameraElevationOffsetFeature_Description": {
-    "Original": "Adds a flat modifier to the height of the camera above the ground.",
+    "Original": "Adds a flat modifier to the height of the camera above the ground. (Head is at ~1.6)",
     "Translated": null
   },
   "ToyBox_Features_BagOfTricks_Camera_DragCameraElevationFeature_Name": {
@@ -136,7 +136,7 @@
     "Translated": null
   },
   "ToyBox_Features_BagOfTricks_Camera_PhysicalZoomFeature_Description": {
-    "Original": "Move the camera physically along the Z-Axis towards/away from the player (when following). Overrides the FOV based zoom on scroll wheel.",
+    "Original": "Move the camera physically along the Z-Axis towards/away from the player (when following). Overrides the FOV based zoom, but not the custom FOV.",
     "Translated": null
   },
   "ToyBox_Features_BagOfTricks_Camera_ResetCameraAimToDefaultFeature_Name": {

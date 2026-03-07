@@ -26,7 +26,7 @@ public partial class CameraElevationOffsetFeature : FeatureWithPatch
     {
         using (HorizontalScope())
         {
-            if (UI.Slider(ref Value, -10f, 10f, 0f, 2, null, null, AutoWidth(), GUILayout.MinWidth(50), GUILayout.MaxWidth(150)))
+            if (UI.Slider(ref Value, -10f, 10f, 0f, 1, null, null, AutoWidth(), GUILayout.MinWidth(50), GUILayout.MaxWidth(150)))
             {
                 if (IsEnabled)
                 {
@@ -45,7 +45,7 @@ public partial class CameraElevationOffsetFeature : FeatureWithPatch
     }
     [LocalizedString("ToyBox_Features_BagOfTricks_Camera_CameraElevationOffsetFeature_Name", "Modify Camera Elevation Offset")]
     public override partial string Name { get; }
-    [LocalizedString("ToyBox_Features_BagOfTricks_Camera_CameraElevationOffsetFeature_Description", "Adds a flat modifier to the height of the camera above the ground.")]
+    [LocalizedString("ToyBox_Features_BagOfTricks_Camera_CameraElevationOffsetFeature_Description", "Adds a flat modifier to the height of the camera above the ground. (Head is at ~1.6)")]
     public override partial string Description { get; }
 
     protected override string HarmonyName

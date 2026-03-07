@@ -6,13 +6,13 @@ namespace ToyBox.Features.BagOfTricks.Camera;
 [HarmonyPatch, ToyBoxPatchCategory("ToyBox.Features.BagOfTricks.Camera.PhysicalZoomFeature")]
 public partial class PhysicalZoomFeature : FeatureWithPatch
 {
-    public ref float ZoomMin
+    public ref float ZoomFarLimit
     {
-        get { return ref Settings.PhysicalZoomMin; }
+        get { return ref Settings.PhysicalZoomFarLimit; }
     }
-    public ref float ZoomMax
+    public ref float ZoomCloseLimit
     {
-        get { return ref Settings.PhysicalZoomMax; }
+        get { return ref Settings.PhysicalZoomCloseLimit; }
     }
     public ref bool UseZoom
     {
@@ -25,7 +25,7 @@ public partial class PhysicalZoomFeature : FeatureWithPatch
 
     [LocalizedString("ToyBox_Features_BagOfTricks_Camera_PhysicalZoomFeature_Name", "Use physical zoom")]
     public override partial string Name { get; }
-    [LocalizedString("ToyBox_Features_BagOfTricks_Camera_PhysicalZoomFeature_Description", "Move the camera physically along the Z-Axis towards/away from the player (when following). Overrides the FOV based zoom on scroll wheel.")]
+    [LocalizedString("ToyBox_Features_BagOfTricks_Camera_PhysicalZoomFeature_Description", "Move the camera physically along the Z-Axis towards/away from the player (when following). Overrides the FOV based zoom, but not the custom FOV.")]
     public override partial string Description { get; }
     protected override string HarmonyName
     {
@@ -44,14 +44,14 @@ public partial class PhysicalZoomFeature : FeatureWithPatch
             {
                 using (HorizontalScope())
                 {
+                    Space(20);
+                    UI.Label("┗━");
                     Space(10);
-                    UI.Label("->");
+                    UI.Label("Far Limit:");
+                    UI.Slider(ref ZoomFarLimit, -15f, 15f, 5f, 0, null, null, AutoWidth(), GUILayout.MinWidth(50), GUILayout.MaxWidth(150));
                     Space(10);
-                    UI.Label("Min:");
-                    UI.Slider(ref ZoomMin, 0f, 5f, 5f, 2, null, null, AutoWidth(), GUILayout.MinWidth(50), GUILayout.MaxWidth(150));
-                    Space(10);
-                    UI.Label("Max:");
-                    UI.Slider(ref ZoomMax, 5f, 50f, 20f, 2, null, null, AutoWidth(), GUILayout.MinWidth(50), GUILayout.MaxWidth(150));
+                    UI.Label("Close Limit:");
+                    UI.Slider(ref ZoomCloseLimit, 15f, 25f, 20f, 0, null, null, AutoWidth(), GUILayout.MinWidth(50), GUILayout.MaxWidth(150));
                 }
             }
         }
@@ -64,12 +64,12 @@ public partial class PhysicalZoomFeature : FeatureWithPatch
     [HarmonyPatch(typeof(CameraZoom), nameof(CameraZoom.PhysicalZoomMin), MethodType.Getter), HarmonyPostfix]
     private static void CameraZoom_getPhysicalZoomMin_Path(ref float __result)
     {
-        __result = GetInstance<PhysicalZoomFeature>().ZoomMin;
+        __result = GetInstance<PhysicalZoomFeature>().ZoomFarLimit;
     }
 
     [HarmonyPatch(typeof(CameraZoom), nameof(CameraZoom.PhysicalZoomMax), MethodType.Getter), HarmonyPostfix]
     private static void CameraZoom_getPhysicalZoomMax_Patch(ref float __result)
     {
-        __result = GetInstance<PhysicalZoomFeature>().ZoomMax;
+        __result = GetInstance<PhysicalZoomFeature>().ZoomCloseLimit;
     }
 }
